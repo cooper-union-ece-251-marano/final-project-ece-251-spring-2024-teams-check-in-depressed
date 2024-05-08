@@ -1,11 +1,11 @@
 //////////////////////////////////////////////////////////////////////////////////
 // The Cooper Union
 // ECE 251 Spring 2024
-// Engineer: YOUR NAMES
+// Engineer: Tiffany Shum & Lani Wang
 // 
-//     Create Date: 2023-02-07
+//     Create Date: 2024-05-08
 //     Module Name: aludec
-//     Description: 32-bit RISC ALU decoder
+//     Description: 16-bit RISC ALU decoder
 //
 // Revision: 1.0
 //
@@ -15,15 +15,9 @@
 
 `timescale 1ns/100ps
 
-module aludec
-    #(parameter n = 32)(
-    //
-    // ---------------- PORT DEFINITIONS ----------------
-    //
-
-    //
-    // ---------------- MODULE DESIGN IMPLEMENTATION ----------------
-    //
+module aludec(
+    
+    );
 
 endmodule
 

@@ -5,7 +5,7 @@
 // 
 //     Create Date: 2023-02-07
 //     Module Name: tb_dff
-//     Description: Test bench for 32 bit D flip flop
+//     Description: Test bench for 16 bit D flip flop
 //
 // Revision: 1.0
 //
@@ -18,7 +18,7 @@
 `include "../clock/clock.sv"
 
 module tb_dff;
-    parameter n = 32; // #bits for an operand
+    parameter n = 16; // #bits for an operand
     wire clk;
     logic enable;
     logic reset;

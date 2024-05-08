@@ -3,7 +3,7 @@
 // ECE 251 Spring 2024
 // Engineer: Prof Rob Marano
 // 
-//     Create Date: 2023-02-07
+//     Create Date: 2024-05-08
 //     Module Name: clock
 //     Description: Clock generator; duty cycle = 50%
 //
@@ -17,15 +17,10 @@
 
 module clock
     #(parameter ticks = 10)(
-    //
-    // ---------------- PORT DEFINITIONS ----------------
-    //
     input ENABLE,
     output reg CLOCK
 );
-    //
-    // ---------------- MODULE DESIGN IMPLEMENTATION ----------------
-    //
+
     reg start_clock;
     real clock_on = ticks/2; // duty cycle = 50%
     real clock_off = ticks/2;
