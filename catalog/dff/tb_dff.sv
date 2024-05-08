@@ -33,14 +33,14 @@ module tb_dff;
     end
 
     initial begin
-        d <= #n'h8000;
+        d <= #n'b0000000000001000;
         enable <= 0;
         #10 enable <= 1;
         #10 reset <= 1;
-        #20 d <= #n'h0001;
+        #20 d <= #n'b0000000000000001;
         #10 reset <= 0;
         #10 reset <=0;
-        #20 d <= #n'h0001;
+        #20 d <= #n'b0000000000000001;
         #100 enable <= 0;
         $finish;        
     end
