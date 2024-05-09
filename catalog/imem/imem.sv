@@ -3,12 +3,12 @@
 // ECE 251 Spring 2024
 // Engineer: Prof Rob Marano
 // 
-//     Create Date: 2023-02-07
+//     Create Date: 2024-05-08
 //     Module Name: imem
-//     Description: 32-bit RISC memory (instruction "text" segment)
+//     Description: 16-bit RISC memory (instruction "text" segment)
 //
-// Revision: 1.0
-//
+// Revision: 1.1
+// 1.1 made 16 bit
 //////////////////////////////////////////////////////////////////////////////////
 `ifndef IMEM
 `define IMEM
@@ -17,7 +17,7 @@
 
 module imem
 // n=bit length of register; r=bit length of addr to limit memory and not crash your verilog emulator
-    #(parameter n = 32, parameter r = 6)(
+    #(parameter n = 16, parameter r = 8)(
     //
     // ---------------- PORT DEFINITIONS ----------------
     //

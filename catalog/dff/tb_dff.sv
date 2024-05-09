@@ -7,8 +7,8 @@
 //     Module Name: tb_dff
 //     Description: Test bench for 16 bit D flip flop
 //
-// Revision: 1.0
-//
+// Revision: 1.1 
+// 1.1: made 16 bit
 //////////////////////////////////////////////////////////////////////////////////
 `ifndef TB_DFF
 `define TB_DFF

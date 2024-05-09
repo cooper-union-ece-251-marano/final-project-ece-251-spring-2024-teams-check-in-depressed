@@ -7,8 +7,8 @@
 //     Module Name: tb_imem
 //     Description: Test bench for instruction memory
 //
-// Revision: 1.0
-//
+// Revision: 1.1
+// 1.1 made 16 bit
 //////////////////////////////////////////////////////////////////////////////////
 `ifndef TB_IMEM
 `define TB_IMEM
