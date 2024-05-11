@@ -20,7 +20,7 @@
 module maindec (
     input logic [3:0] op, // opcode
     output logic regWrite, branch, memWrite,
-    output logic [1:0] regDst, memToReg, jump, aluSrc,
+    output logic [1:0] regDst, memToReg, jump, aluSrc
     );
 
     logic [10:0] ctrl;
