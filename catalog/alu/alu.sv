@@ -37,17 +37,9 @@ module alu(
                     o1 <= (i1 < i2);
                 end
             3'b111: o1 <= ~(i1 | i2) //NOR
-            default: o1 <= 'bz;
+            default: o1 <= 0;
         endcase
-
-        if (o1 == 16'b0000000000000000) begin
-			zero = 1;
-		end
-		else begin
-			zero = 0;
-		end
-    end        
-
+    end
 endmodule
 
 `endif // ALU
