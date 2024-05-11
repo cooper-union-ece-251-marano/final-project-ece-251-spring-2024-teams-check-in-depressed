@@ -1,11 +1,11 @@
 //////////////////////////////////////////////////////////////////////////////////
 // The Cooper Union
 // ECE 251 Spring 2024
-// Engineer: Prof Rob Marano
+// Engineer: Tiffany Shum & Lani Wang
 // 
 //     Create Date: 2023-02-07
 //     Module Name: maindec
-//     Description: 32-bit RISC-based CPU main decoder (MIPS)
+//     Description: 16-bit RISC-based CPU main decoder (MIPS)
 //
 // Revision: 1.0
 //
@@ -15,39 +15,39 @@
 
 `timescale 1ns/100ps
 
-module maindec
-    #(parameter n = 32)(
-    //
-    // ---------------- PORT DEFINITIONS ----------------
-    //
-    input  logic [5:0] op,
-    output logic       memtoreg, memwrite,
-    output logic       branch, alusrc,
-    output logic       regdst, regwrite,
-    output logic       jump,
-    output logic [1:0] aluop
-);
-    //
-    // ---------------- MODULE DESIGN IMPLEMENTATION ----------------
-    //
-    logic [8:0] controls; // 9-bit control vector
+// kinda redundantly, aludec finds alu op based on 4bit opcode. could have been done all here but i kept as is...
 
-    // controls has 9 logical signals
-    assign {regwrite, regdst, alusrc, branch, memwrite,
-            memtoreg, jump, aluop} = controls;
+module maindec (
+    input logic [3:0] op, // opcode
+    output logic regWrite, branch, memWrite,
+    output logic [1:0] regDst, memToReg, jump, aluSrc,
+    );
 
-    always @* begin
+    logic [10:0] ctrl;
+    assign {regWrite, regDst, branch, memWrite, memToReg, jump, aluSrc} = ctrl;
+
+    always @*
         case(op)
-            6'b000000: controls <= 9'b110000010; // RTYPE
-            6'b100011: controls <= 9'b101001000; // LW
-            6'b101011: controls <= 9'b001010000; // SW
-            6'b000100: controls <= 9'b000100001; // BEQ
-            6'b001000: controls <= 9'b101000000; // ADDI
-            6'b000010: controls <= 9'b000000100; // J
-            default:   controls <= 9'bxxxxxxxxx; // illegal operation
-        endcase
-    end
+            4'b0000:  ctrl <= 11'b10100000000; //add
+            4'b0001:  ctrl <= 11'b10100000000; //sub
+            4'b0010:  ctrl <= 11'b10100000000; //and
+            4'b0011:  ctrl <= 11'b10100000000; //or
+            4'b0100:  ctrl <= 11'b10100000010; //sll
+            4'b0101:  ctrl <= 11'b10100000010; //srl
+            4'b0110:  ctrl <= 11'b10100000000; //slt
+            4'b0111:  ctrl <= 11'b00000001000; //jr
+            4'b1000:  ctrl <= 11'b00100000000; //move
+            4'b1001:  ctrl <= 11'b10000010001; //lw
+            4'b1010:  ctrl <= 11'b00001000001; //sw
+            4'b1011:  ctrl <= 11'b10000000001; //addi
+            4'b1100:  ctrl <= 11'b10000000001; //subi
+            4'b1101:  ctrl <= 11'b00010000000; //beq
+            4'b1110:  ctrl <= 11'b00000000100; //j
+            4'b1111:  ctrl <= 11'b11000100100; //jal
 
+            default: ctrl <= 11'bx; // illegal
+        endcase
 endmodule
+
 
 `endif // MAINDEC
