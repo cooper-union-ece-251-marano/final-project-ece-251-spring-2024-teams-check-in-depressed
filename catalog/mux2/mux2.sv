@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // The Cooper Union
 // ECE 251 Spring 2024
-// Engineer: Prof Rob Marano
+// Engineer: Tiffany Shum & lani wang
 // 
 //     Create Date: 2023-02-07
 //     Module Name: mux2
@@ -14,9 +14,9 @@
 `define MUX2
 
 `timescale 1ns/100ps
-
+// n = bitwidth
 module mux2
-    #(parameter n = 16)(
+    #(parameter n = 8)(
     //
     // ---------------- PORT DEFINITIONS ----------------
     //
