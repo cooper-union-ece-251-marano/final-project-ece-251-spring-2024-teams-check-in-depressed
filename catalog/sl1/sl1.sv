@@ -15,15 +15,13 @@
 
 `timescale 1ns/100ps
 
-module sl2
-    #(parameter n = 16)(
-    input  logic [(n-1):0] A,
-    output logic [(n-1):0] Y
-    );
-    always @* begin
-        Y <= A << 1;
-    end
 
+module sl1(input  [15:0] a,
+           output [15:0] y);
+
+  // shift left by 1
+    assign y = {a[13:0], 2'b00};
 endmodule
+
 
 `endif // SL1
