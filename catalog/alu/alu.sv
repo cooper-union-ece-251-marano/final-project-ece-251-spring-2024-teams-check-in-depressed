@@ -16,14 +16,14 @@
 
 module alu(
     input logic [15:0] i1, i2,
-    input logic [2:0] op,
+    input logic [2:0] aluop,
     output logic [15:0] o1,
     output logic zero
     );
     assign zero = (o1==0);
 
-    always @(i1 or o2 or op) begin
-        case(op)
+    always @(i1 or o2 or aluop) begin
+        case(aluop)
             3'b000: o1 <= i1 + i2; //ADD
             3'b001: o1 <= i1 - i2; //SUB
             3'b010: o1 <= i1 & i2; //AND
