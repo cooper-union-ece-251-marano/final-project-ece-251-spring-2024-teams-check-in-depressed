@@ -4,21 +4,24 @@
 // Engineer: Tiffany Shum & Lani Wang
 // 
 //     Create Date: 2024-05-08
-//     Module Name: adder
-//     Description: 16 bit, 2 input adder
+//     Module Name: sl1
+//     Description: shift left by 1
 //
+// Revision: 1.0
 //
 //////////////////////////////////////////////////////////////////////////////////
-`ifndef ADDER
-`define ADDER
+`ifndef SL1
+`define SL1
+
 `timescale 1ns/100ps
 
-module adder (
-    input logic [15:0] i1, i2,
-    output logic [15:0] o1
-    );
-    assign o1 = i1 + i2;
 
+module sl1(input  [15:0] a,
+           output [15:0] y);
+
+  // shift left by 1
+    assign y = {a[13:0], 2'b00};
 endmodule
 
-`endif // ADDER
+
+`endif // SL1

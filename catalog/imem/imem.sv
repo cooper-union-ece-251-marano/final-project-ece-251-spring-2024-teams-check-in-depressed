@@ -1,43 +1,29 @@
 //////////////////////////////////////////////////////////////////////////////////
 // The Cooper Union
 // ECE 251 Spring 2024
-// Engineer: Prof Rob Marano
+// Engineer: Tiifany Shum & Lani Wang
 // 
-//     Create Date: 2023-02-07
+//     Create Date: 2024-05-08
 //     Module Name: imem
-//     Description: 32-bit RISC memory (instruction "text" segment)
+//     Description: 16-bit RISC memory (instruction "text" segment)
 //
-// Revision: 1.0
-//
+// Revision: 1.1
+// 1.1 made 16 bit
 //////////////////////////////////////////////////////////////////////////////////
 `ifndef IMEM
 `define IMEM
-
 `timescale 1ns/100ps
 
-module imem
-// n=bit length of register; r=bit length of addr to limit memory and not crash your verilog emulator
-    #(parameter n = 32, parameter r = 6)(
-    //
-    // ---------------- PORT DEFINITIONS ----------------
-    //
-    input  logic [(r-1):0] addr,
-    output logic [(n-1):0] readdata
-);
-    //
-    // ---------------- MODULE DESIGN IMPLEMENTATION ----------------
-    //
-    logic [(n-1):0] RAM[0:(2**r-1)];
+module imem(input logic  [4:0] addr,    
+            output logic [15:0] readdata);
 
-  initial
-    begin
-      // read memory in hex format from file 
-      // $readmemh("program_exe",RAM);
-      $readmemh("mult-prog_exe",RAM);
+    logic [15:0] RAM[31:0];
+    initial begin
+        $readmemh("instructions.dat",RAM);    // in hex format, so each should be 4 characters long for 16 bits
     end
 
-  assign readdata = RAM[addr]; // word aligned
-
+    assign readdata = RAM[addr]; // word aligned
 endmodule
+
 
 `endif // IMEM

@@ -1,42 +1,30 @@
 //////////////////////////////////////////////////////////////////////////////////
 // The Cooper Union
 // ECE 251 Spring 2024
-// Engineer: Prof Rob Marano
+// Engineer: Tiffany Shum & Lani Wang
 // 
-//     Create Date: 2023-02-07
+//     Create Date: 2024-05-08
 //     Module Name: dff
-//     Description: 32 bit D flip flop
+//     Description: 16 bit D flip flop
 //
-// Revision: 1.0
-//
+// Revision: 1.1
+// 1.1: made 16 bit
 //////////////////////////////////////////////////////////////////////////////////
 `ifndef DFF
 `define DFF
-
 `timescale 1ns/100ps
 
-module dff
-    #(parameter n = 32)(
-    //
-    // ---------------- PORT DEFINITIONS ----------------
-    //
+module dff (
     input  logic CLOCK, RESET,
-    input  logic [(n-1):0] D,
-    output logic [(n-1):0] Q
+    input  logic [15:0] D,
+    output logic [15:0] Q
 );
-    //
-    // ---------------- MODULE DESIGN IMPLEMENTATION ----------------
-    //
-    always @(posedge CLOCK, posedge RESET)
-    begin
+
+    always @(posedge CLOCK, posedge RESET) begin
         if (RESET)
-        begin
             Q <= 0;
-        end
         else
-        begin
             Q <= D;
-        end
     end
 endmodule
 
