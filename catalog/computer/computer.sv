@@ -7,12 +7,11 @@
 //     Module Name: computer
 //     Description: 16-bit RISC
 //
-// Revision: 1.0
-//
+// Revision: 1.1
+// 1.1 made 16 bit
 //////////////////////////////////////////////////////////////////////////////////
 `ifndef COMPUTER
 `define COMPUTER
-
 `timescale 1ns/100ps
 
 `include "../cpu/cpu.sv"
@@ -31,14 +30,14 @@ module computer
     //
     // ---------------- MODULE DESIGN IMPLEMENTATION ----------------
     //
-    logic [(n-1):0] pc, instr, readdata;
+    wire [(n-1):0] pc, instr, readdata;
 
     // computer internal components
 
     // the RISC CPU
-    cpu mips(clk, reset, pc, instr, memwrite, dataadr, writedata, readdata);
+    mips mips(clk, reset, pc, instr, memwrite, dataadr, writedata, readdata);
     // the instruction memory ("text segment") in main memory
-    imem imem(pc[5:0], instr);
+    imem imem(pc[4:0], instr);
     // the data memory ("data segment") in main memory
     dmem dmem(clk, memwrite, dataadr, writedata, readdata);
 
