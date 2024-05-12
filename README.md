@@ -29,6 +29,14 @@ We chose a single-cycle, non-pipelined implementation.
 
 # Instruction Set Architecture
 
+### Parameters
+
+Operand & Instruction size: 16 bits    
+Byte Addressable  
+Immediate Size: 4 bits (-7 to 7)  
+Shamt Size: 4 bits  
+Opcode Size: 4 bits  
+
 ### Instruction Fields
 ![image](https://github.com/cooper-union-ece-251-marano/final-project-ece-251-spring-2024-teams-check-in-depressed/assets/112588802/d59c6c4c-1201-4ab5-9c82-6a7d03d4acb3)
 
