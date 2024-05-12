@@ -1,9 +1,25 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/pelSJLGu)
-# Catalog of Verilog Components to Build and Simulate a MIPS-based RISC.
+# 16-bit MIPS Inspired Single-Cycle Processor
 
 Created by: Tiffany Shum and Lani Wang
 
 Inspired by Prof Marano and Harris & Harris's MIPS implementations.
+
+# Components Included
+
+adder    
+alu    
+clock    
+controller    
+datapath    
+dff    
+dmem    
+imem    
+maindec    
+mux2    
+regfile    
+signext    
+sl1    
 
 # CPU Diagram
 
@@ -36,6 +52,10 @@ ALUsrc – determines whether the second source operand for ALU instructions is 
 
 ### Registers Defined in Memory
 ![image](https://github.com/cooper-union-ece-251-marano/final-project-ece-251-spring-2024-teams-check-in-depressed/assets/112588802/a3cda7dd-89ac-4013-91d5-6b8c38dbc160)
+
+### Memory Usage
+
+Memory consists of imem (instruction memory) and dmem (data memory). The instruction memory is stored in instructions.dat and is written in hex. When given the address specified by the PC, it returns the 16-bit instruction that is then sent to the control unit. The control decoders, based on the 4-bit opcode, decide all of the control signals needed for the other components. As for data memory, it is accessed when instructions like lw (load word) or sw (store word) are invoked.
 
 
 
