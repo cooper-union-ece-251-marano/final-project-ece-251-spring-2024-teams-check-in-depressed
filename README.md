@@ -5,6 +5,12 @@ Created by: Tiffany Shum and Lani Wang
 
 Inspired by Prof Marano and Harris & Harris's MIPS implementations.
 
+# CPU Diagram
+
+![YO](https://github.com/cooper-union-ece-251-marano/final-project-ece-251-spring-2024-teams-check-in-depressed/assets/112588802/a9e58c3d-66bc-4fc4-b648-a1a811f39b73)
+
+We chose a single-cycle, non-pipelined implementation.
+
 # Instruction Set Architecture
 
 ### Instruction Fields
