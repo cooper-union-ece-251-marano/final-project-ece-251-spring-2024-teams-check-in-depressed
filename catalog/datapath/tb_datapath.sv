@@ -15,9 +15,13 @@
 `timescale 1ns/100ps
 `include "datapath.sv"
 
+`timescale 1ns/100ps
+
 module tb_datapath;
+    // Parameters
     parameter n = 16;
 
+    // Inputs
     reg clk;
     reg reset;
     reg memtoreg;
@@ -27,44 +31,73 @@ module tb_datapath;
     reg regwrite;
     reg jump;
     reg [2:0] alucontrol;
-    reg [15:0] instr;
-    reg [15:0] readdata;
+    reg [n-1:0] instr;
+    reg [n-1:0] readdata;
 
-	wire zero;
-    wire [15:0] pc;
-    wire [15:0] aluout;
-    wire [15:0] writedata;
+    // Outputs
+    wire zero;
+    wire [n-1:0] pc;
+    wire [n-1:0] aluout;
+    wire [n-1:0] writedata;
 
-    initial begin
-        $dumpfile("datapath.vcd");
-        $dumpvars(0,uut);
-        $monitor("instr = %b, read = %b, controls = %b, aluop = %b, write = %b", instr, ReadData, controls, aluop, WriteData)
+    // Instantiate datapath module
+    datapath #(.n(n)) uut (
+        .clk(clk),
+        .reset(reset),
+        .memtoreg(memtoreg),
+        .pcsrc(pcsrc),
+        .alusrc(alusrc),
+        .regdst(regdst),
+        .regwrite(regwrite),
+        .jump(jump),
+        .alucontrol(alucontrol),
+        .zero(zero),
+        .pc(pc),
+        .instr(instr),
+        .aluout(aluout),
+        .writedata(writedata),
+        .readdata(readdata)
+    );
+
+    // Clock generation
+    always begin
+        clk = 0;
+        #5;  // Toggle the clock every 5 time units
+        clk = 1;
+        #5;
     end
 
+    // Initialize inputs
     initial begin
-    	rst <= 0;
-	    instr <= 16'b0111001011110001;
-	    aluop <= 3'b100;
-	    controls <= 7'b0100100;
-	    ReadData <= 0;
-	    #30
-	    instr <= 16'b1101000110000011;
-	    aluop <= 3'b100;
-	    controls <= 7'b0100100;
-	    ReadData <= 33;
-	    #30 
-	    instr <= 16'b1001001111100000;
-	    aluop <= 3'b100;
-	    controls <= 7'b0100010;
-	    ReadData <= 90;
-	    #10
-	    #20 
-        $finish;
+        reset = 1;
+        memtoreg = 0;
+        pcsrc = 0;
+        alusrc = 0;
+        regdst = 0;
+        regwrite = 0;
+        jump = 0;
+        alucontrol = 0;
+        instr = 0;
+        readdata = 0;
+
+        #10;  // Wait for 10 time units
+        reset = 0;
+
+        // Provide stimulus
+        instr = 16'b1100110000001111;  // Example instruction
+        alucontrol = 3'b001;  // Example ALU control signal
+        readdata = 16'hABCD;  // Example read data value
+
+        #20;  // Wait for 20 time units
+
+        $finish;  // End simulation
     end
 
-    datapath uut(.clk(clk), .reset(rst), .regwrite(controls[7]), .regdst(controls[6]), .branch(controls[5]), .memwrite(controls[3]),
-    .memtoreg(controls[2]), .jump(controls[]), .alusrc(controls[1]), .aluop(controls[0]), .zero(zero), .pc(pc), .instr(instr),
-    .aluout(alu), .writedata(writedata), .readdata(readdata));
+    // Display signal values
+    always @(posedge clk) begin
+        $display("clk=%b, reset=%b, memtoreg=%b, pcsrc=%b, alusrc=%b, regdst=%b, regwrite=%b, jump=%b, alucontrol=%b, instr=%h, readdata=%h",
+            clk, reset, memtoreg, pcsrc, alusrc, regdst, regwrite, jump, alucontrol, instr, readdata);
+    end
 
 endmodule
 `endif // TB_DATAPATH
